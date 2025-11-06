@@ -54,6 +54,11 @@ For a complete end-to-end generation and testing script using OpenRouter and Ope
 ```bash
 bash run_experiment.sh examples/openai_experiment.py configs/gpt-5-high.yaml
 ```
+To view experiments, use the `display_results_csv.py` script provided by passing in the directory containing your results:
+```bash
+python3 display_results_csv.py <path_to_json_dir>
+```
+Many optional arguments are provided to change the formatting and information (e.g. `--csv` flag returns the data in csv form, `--split` partitions data to specific questions in the split)
 
 ### Commands in run_experiment
 
