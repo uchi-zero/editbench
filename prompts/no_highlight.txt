@@ -1,0 +1,13 @@
+Generate a new implementation of the following code based on the user instruction:
+
+The Original code (to be modified):
+
+```{lang}
+{original_code}
+```
+
+The user instruction is:
+{instruction}
+
+Please output the entire code file.
+Respond only in a python code block beginning with ```{lang}.

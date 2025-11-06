@@ -1,0 +1,21 @@
+Generate a new implementation of the following code based on the user instruction:
+
+The Original code (to be modified):
+
+```{lang}
+{original_code}
+```
+
+The user's cursor position (line number: column number) is at {cursor_pos}
+
+The user instruction is:
+{instruction}
+
+And they highlighted this section to be changed:
+```{lang}
+{highlighted_code}
+```
+
+Please only change the highlighted section and leave the rest of the code unchanged.
+Please output the entire code file.
+Respond only in a python code block beginning with ```{lang}.

@@ -1,0 +1,21 @@
+Generate a new implementation of the following code based on the user instruction:
+
+The Original code (to be modified):
+
+```{lang}
+{original_code}
+```
+
+The user instruction is:
+{instruction}
+
+And they highlighted this section to be changed:
+```{lang}
+{highlighted_code}
+```
+
+Only change the highlighted section and leave the rest of the code unchanged.
+Output the entire code file.
+You may generate <think> tokens to reason the right answer.
+You MUST return the code block wrapped with ```{lang} your code here ``` for your final answer.
+
