@@ -82,7 +82,7 @@ Experiments run inside Docker containers, and the `edit_bench` package provides 
 The two function you need from `edit_bench.evaluation` are:
 
 - **`generate_files`** - Generates code files for the specified model
-- **`test_heb`** - Runs tests for the specified model's generations
+- **`test_edits`** - Runs tests for the specified model's generations
 
 The end-to-end examples (e.g. `examples/openai_experiment.py`) provide practical uses for these function. The spec for these functions:
 
@@ -117,7 +117,7 @@ This project is licensed under the Apache 2.0 License.
 
 ## Acknowledgments
 
-- Thanks to all contributors who have helped shape HumanEditBench
+- Thanks to all contributors who have helped shape EDITBench
 - Special thanks to the open source community for continuous support
 
 ## Contact
