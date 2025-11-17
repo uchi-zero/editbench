@@ -17,5 +17,5 @@ And they highlighted this section to be changed:
 Only change the highlighted section and leave the rest of the code unchanged.
 Output the entire code file.
 You may generate <think> tokens to reason the right answer.
-You MUST return the code block wrapped with ```{lang} your code here ``` for your final answer.
+You MUST return the block wrapped with ```{lang} your code here ``` for your final answer.
 

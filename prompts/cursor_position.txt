@@ -18,4 +18,4 @@ And they highlighted this section to be changed:
 
 Please only change the highlighted section and leave the rest of the code unchanged.
 Please output the entire code file.
-Respond only in a python code block beginning with ```{lang}.
+Respond only in a code block beginning with ```{lang}.

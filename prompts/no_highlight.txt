@@ -10,4 +10,4 @@ The user instruction is:
 {instruction}
 
 Please output the entire code file.
-Respond only in a python code block beginning with ```{lang}.
+Respond only in a code block beginning with ```{lang}.
