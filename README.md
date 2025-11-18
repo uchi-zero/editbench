@@ -69,7 +69,7 @@ We provided the simplest example with `run_experiments.py`, however you can cust
 You need to generate files before running our tests. We've provided an example at `examples/generate_and_run_experiment.py` on how to do both at once.
 
 ```bash
-bash run_experiment.sh examples/run_gpt_4o_mini_experiment.py
+bash run_experiment.sh examples/generate_and_run_experiment.py
 ```
 
 This uses the `prompts/whole_file.txt` prompt which is the baseline used in our paper.
@@ -80,9 +80,9 @@ For a complete end-to-end generation and testing script using OpenRouter and Ope
 ```bash
 bash run_experiment.sh examples/openai_experiment.py configs/gpt-5-high.yaml
 ```
-To view experiments, use the `display_results_csv.py` script provided by passing in the directory containing your results:
+To view experiments, use the `scripts/display_results_csv.py` script provided by passing in the directory containing your results:
 ```bash
-python3 display_results_csv.py <path_to_json_dir>
+python3 scripts/display_results_csv.py <path_to_json_dir>
 ```
 Many optional arguments are provided to change the formatting and information (e.g. `--csv` flag returns the data in csv form, `--split` partitions data to specific questions in the split)
 
