@@ -36,22 +36,22 @@ _EDIT-Bench is a code editing benchmark built on real code edits gathered from V
 
 ## Quick Start
 
-Evaluating your generations on EDIT-Bench is easy!
+Evaluating new models on EDIT-Bench is easy!
 
 1. Install Docker.
 2. Provide your generated code edits.
-3. Modify and run the script at `examples/run_experiment.py`!
+3. Modify and run the script at `examples/run_experiment.py`
 
 ### Example
 As an example, we pre-generated code edits for `gpt-o3-mini`.
 Generations with the expected format are found at `generations/whole_file/gpt-o3-mini`.
 
-To run:
+To evaluate these generations:
 
 ```bash
 bash run_experiment.sh examples/run_experiment.py
 ```
-You should see the results in `example_results/gpt-o3-mini.json`
+You will find the results in `example_results/gpt-o3-mini.json`
 
 
 ## Customize Experiments
