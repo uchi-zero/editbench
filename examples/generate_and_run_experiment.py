@@ -5,6 +5,11 @@ from openai import OpenAI
 import time
 import argparse
 
+GENERATION_PATH = Path(getenv("WORKDIR"), "generations", "whole_file", "gpt-4o-mini")
+OUTPUT_FILE="example_results/gpt-4o-mini.json"
+PROMPT_FILE="prompts/whole_file.txt"
+SPLIT="test"
+
 def gpt_4o_mini_gen_function(prompt, lang):
     client = OpenAI(
         api_key=getenv("OPENAI_API_KEY"),
@@ -41,13 +46,13 @@ def gpt_4o_mini_gen_function(prompt, lang):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--should_generate", action="store_true", help="Whether to generate new files or just test existing ones")
+    parser.add_argument("--test_only", action="store_true", help="Whether to generate new files or just test existing ones")
     args = parser.parse_args()
-    # Path to the generations 
-    gpt_4o_mini_gen_path = Path(getenv("WORKDIR"), "generations", "whole_file", "gpt-4o-mini")
 
-    if args.should_generate:
-        generate_files(gpt_4o_mini_gen_function, "prompts/whole_file.txt", gpt_4o_mini_gen_path, split="test", max_workers=32)
+    if args.test_only:
+        test_edits(gen_path=GENERATION_PATH, split=SPLIT, output_file=OUTPUT_FILE)
+    else:
+        generate_files(gpt_4o_mini_gen_function, PROMPT_FILE, GENERATION_PATH, split=SPLIT, max_workers=32)
 
     # Use our testing function to run tests on the generated files
-    test_edits(gen_path=gpt_4o_mini_gen_path, split="test", output_file=f"example_results/gpt-4o-mini.json")
+    test_edits(gen_path=GENERATION_PATH, split=SPLIT, output_file=OUTPUT_FILE)

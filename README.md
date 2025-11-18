@@ -1,54 +1,80 @@
-# EditBench
+<div align="center">
 
-[![X (formerly Twitter) Follow](https://img.shields.io/twitter/follow/iamwaynechi?style=flat-square&logo=x&label=Wayne%20Chi)](https://twitter.com/iamwaynechi)
-[![GitHub](https://img.shields.io/badge/waynchi-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/waynchi)
-[![Website](https://img.shields.io/badge/waynechi.com-4285F4?style=flat-square&logo=google-chrome&logoColor=white)](https://www.waynechi.com/)
+# EDIT-Bench: Evaluating LLM Abilities to Perform Real-World Instructed Code Edits
 
-[![X (formerly Twitter) Follow](https://img.shields.io/twitter/follow/valeriechen_?style=flat-square&logo=x&label=Valerie%20Chen)](https://twitter.com/valeriechen_)
-[![GitHub](https://img.shields.io/badge/valeriechen-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/valeriechen)
-[![Website](https://img.shields.io/badge/valeriechen.github.io-4285F4?style=flat-square&logo=google-chrome&logoColor=white)](https://valeriechen.github.io/)
+_EDIT-Bench is a code editing benchmark built on real code edits gathered from VSCode._
+<p align="center">
+  <a href="https://arxiv.org/abs/2511.04486">
+    <img src="https://img.shields.io/badge/%F0%9F%93%84%20arXiv-2511.04486-b31b1b?style=for-the-badge" alt="arXiv Paper"/>
+  </a>
+  &nbsp;
+  <a href="https://huggingface.co/datasets/copilot-arena/EditBench">
+    <img src="https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-Hugging%20Face-ffc107?style=for-the-badge" alt="Dataset on Hugging Face"/>
+  </a>
+  &nbsp;
+  <a href="https://waynechi.com/edit-bench/">
+    <img src="https://img.shields.io/badge/%F0%9F%8F%86%20Leaderboard-Website-1f8ef1?style=for-the-badge" alt="Leaderboard Website"/>
+  </a>
+</p>
 
-[![X (formerly Twitter) Follow](https://img.shields.io/twitter/follow/RyanShar01?style=flat-square&logo=x&label=Ryan%20Shar)](https://twitter.com/RyanShar01)
-[![GitHub](https://img.shields.io/badge/rShar01-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/rShar01)
-[![Website](https://img.shields.io/badge/rShar01.github.io-4285F4?style=flat-square&logo=google-chrome&logoColor=white)](https://rShar01.github.io/)
+[![GitHub stars](https://img.shields.io/github/stars/waynchi/editbench?style=flat-square&logo=github)](https://github.com/waynchi/editbench)
+[![GitHub forks](https://img.shields.io/github/forks/waynchi/editbench?style=flat-square&logo=github)](https://github.com/waynchi/editbench)
+[![GitHub last commit](https://img.shields.io/github/last-commit/waynchi/editbench?style=flat-square&logo=github)](https://github.com/waynchi/editbench)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![Python](https://img.shields.io/badge/python-3.8+-blue.svg?style=flat-square)](https://www.python.org/downloads/)
 
-EditBench is a code editing benchmark built on real code edits from [Copilot Arena](https://github.com/lmarena/copilot-arena).  
-The dataset can be found in [HuggingFace](https://huggingface.co/datasets/copilot-arena/EditBench).
+</div>
 
-## Overview
+---
 
-The EditBench repository provides a simple method for generating code snippets and evaluating them in an isolated Docker container. 
-
-
-
-## Benchmark Results
-
-TODO
+> **Quick Links**  
+> 📄 **Paper:** [arXiv 2511.04486](https://arxiv.org/abs/2511.04486)  
+> 📦 **Dataset:** [Hugging Face /copilot-arena/EDIT-Bench](https://huggingface.co/datasets/copilot-arena/EditBench)  
+> 🏆 **Leaderboard:** [waynechi.com/edit-bench](https://waynechi.com/edit-bench/)
 
 
-## Running Experiments
+## Quick Start
 
-All experiments are executed using the `run_experiment.sh` shell script, which serves as the main command-line interface for the framework. This script handles building docker containers and running experiments inside the container.
+Evaluating your generations on EDIT-Bench is easy!
 
-All environment variables to be used in the docker container are defined in the `EditBench.config` file.
+1. Install Docker.
+2. Provide your generated code edits.
+3. Modify and run the script at `examples/run_experiment.py`!
 
-### Quick Start
-We provide a few sample scripts for generating and running experiments.
-To run the tests with pre-generated code edits for `gpt-o3-mini`:
+### Example
+As an example, we pre-generated code edits for `gpt-o3-mini`.
+Generations with the expected format are found at `generations/whole_file/gpt-o3-mini`.
+
+To run:
 
 ```bash
-bash run_experiment.sh examples/run_gpt_o3_mini_tests.py
+bash run_experiment.sh examples/run_experiment.py
 ```
 You should see the results in `example_results/gpt-o3-mini.json`
 
-To generate gpt-4o-mini code solutions using the `prompts/whole_file.txt` prompt and run the tests in one command, use
-```bash
-bash run_experiment.sh examples/run_gpt_4o_mini_experiment.py --should_generate
+
+## Customize Experiments
+
+The core function used to run our experiments is:
+
+```python
+test_edits(gen_path=GENERATION_PATH, split=SPLIT, output_file=OUTPUT_FILE)
 ```
-The generated code will be stored in "generations/whole_file/gpt-4o-mini" and the results will be in `example_results/gpt-4o-mini.json`
+
+We provided the simplest example with `run_experiments.py`, however you can customize the file in multiple ways.
+
+### Generation Example
+
+You need to generate files before running our tests. We've provided an example at `examples/generate_and_run_experiment.py` on how to do both at once.
+
+```bash
+bash run_experiment.sh examples/run_gpt_4o_mini_experiment.py
+```
+
+This uses the `prompts/whole_file.txt` prompt which is the baseline used in our paper.
+
+### Other Examples
 
 For a complete end-to-end generation and testing script using OpenRouter and OpenAI, see `examples/openrouter_experiment.py` and `examples/openai_experiment.py`. These scripts take a YAML file as the first argument and runs the experiment with the configuration inside the YAML. For example:
 ```bash
@@ -59,6 +85,12 @@ To view experiments, use the `display_results_csv.py` script provided by passing
 python3 display_results_csv.py <path_to_json_dir>
 ```
 Many optional arguments are provided to change the formatting and information (e.g. `--csv` flag returns the data in csv form, `--split` partitions data to specific questions in the split)
+
+## Extra Information
+
+All experiments are executed using the `run_experiment.sh` shell script, which serves as the main command-line interface for the framework. 
+This script handles building docker containers and running experiments inside the container.
+All environment variables to be used in the docker container are defined in the `EditBench.config` file.
 
 ### Commands in run_experiment
 
@@ -76,7 +108,9 @@ bash ./run_experiment build
 bash ./run_experiment shell
 ```
 
-## Writing Your Own Inference & Testing Script
+<details>
+<summary><b>Writing Your Own Inference & Testing Script</b></summary>
+
 Experiments run inside Docker containers, and the `edit_bench` package provides convenient functions for running experiments. The docker container is an isolated execution environment and mounts this repo inside the container as `/projects` (can be accessed using the WORKDIR env variable). Edits made in this repo are synced with the repo inside docker.
 
 The two function you need from `edit_bench.evaluation` are:
@@ -90,7 +124,7 @@ The end-to-end examples (e.g. `examples/openai_experiment.py`) provide practical
 - This function loads data from HF and uses `fn` in multiple threads to generate solutions to each problem. The function ignores problem_ids that already exist in `generations_path`
 - `fn(prompt, lang)` is a function that takes a prompt string and programming language string and returns the model's generation for that prompt. The lang string makes parsing the output easier
 - `prompt_path` is the path to the prompt f-string. See `prompts/` for examples. The f-string has access to variables: lang (programming language), original_code, instruction (user instruction), and highlighted_code
-- `generation_path` is the directory for generated outputs. The generations are stored by problem_id name. Set the path prefix to  `/projects` (can be accessed using the WORKDIR env variable) for the generations to persist outside of docker. 
+- `generation_path` is the directory for generated outputs. The generations are stored by problem_id name. Set the path prefix to  `/projects` (can be accessed using the WORKDIR env variable) for the generations to persist outside of docker.
 - `split` the set of questions to use from HF
 
 `test_edits(gen_path, split, output_file)`
@@ -99,30 +133,66 @@ The end-to-end examples (e.g. `examples/openai_experiment.py`) provide practical
 - `split` the HF split to use
 - `output_file` the location of outputs. Use `/projects` (can be accessed using the WORKDIR env variable) to ensure results persists between docker runs.
 
-
-## Contributing
-
-We welcome contributions! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
-
-### Development Guidelines
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the Apache 2.0 License.
-
-## Acknowledgments
-
-- Thanks to all contributors who have helped shape EDITBench
-- Special thanks to the open source community for continuous support
+</details>
 
 ## Contact
 
 For questions and feedback, please open an issue or feel free to reach out directly!
 
+### Authors
+
+<table>
+<tr>
+    <td align="center">
+        <a href="https://waynechi.com">
+            <img src="https://github.com/waynchi.png" width="100px;" alt="Wayne Chi"/>
+            <br />
+            <sub><b>Wayne Chi</b></sub>
+        </a>
+        <br />
+        <a href="https://twitter.com/iamwaynechi">Twitter</a> •
+        <a href="https://github.com/waynchi">GitHub</a> •
+        <a href="https://waynechi.com">Website</a>
+    </td>
+    <td align="center">
+        <a href="https://valeriechen.github.io">
+            <img src="https://github.com/valeriechen.png" width="100px;" alt="Valerie Chen"/>
+            <br />
+            <sub><b>Valerie Chen</b></sub>
+        </a>
+        <br />
+        <a href="https://twitter.com/valeriechen_">Twitter</a> •
+        <a href="https://github.com/valeriechen">GitHub</a> •
+        <a href="https://valeriechen.github.io">Website</a>
+    </td>
+    <td align="center">
+        <a href="https://rShar01.github.io">
+            <img src="https://github.com/rShar01.png" width="100px;" alt="Ryan Shar"/>
+            <br />
+            <sub><b>Ryan Shar</b></sub>
+        </a>
+        <br />
+        <a href="https://twitter.com/RyanShar01">Twitter</a> •
+        <a href="https://github.com/rShar01">GitHub</a> •
+        <a href="https://rShar01.github.io">Website</a>
+    </td>
+</tr>
+</table>
+
+## License
+
+This project is licensed under the Apache 2.0 License.
+
 ## Citation
 
+```bibtex
+@misc{chi2025editbenchevaluatingllmabilities,
+      title={EDIT-Bench: Evaluating LLM Abilities to Perform Real-World Instructed Code Edits}, 
+      author={Wayne Chi and Valerie Chen and Ryan Shar and Aditya Mittal and Jenny Liang and Wei-Lin Chiang and Anastasios Nikolas Angelopoulos and Ion Stoica and Graham Neubig and Ameet Talwalkar and Chris Donahue},
+      year={2025},
+      eprint={2511.04486},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE},
+      url={https://arxiv.org/abs/2511.04486}, 
+}
+```
