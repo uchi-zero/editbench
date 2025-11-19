@@ -86,7 +86,7 @@ image_exists() {
 build_if_needed() {
     if ! image_exists; then
         echo -e "${YELLOW}Docker image not found. Building...${NC}"
-        docker build -t "$IMAGE_NAME" \
+        docker buildx build --load -t "$IMAGE_NAME" \
             --build-arg PYTHON_VERSION="$PYTHON_VERSION" \
             "$PROJECT_DIR"
         echo -e "${GREEN}✓ Build complete${NC}"
@@ -144,7 +144,7 @@ case "${1:-}" in
         load_config
         validate_config
         echo -e "${GREEN}Building Docker image...${NC}"
-        docker build -t "$IMAGE_NAME" \
+        docker buildx build --load -t "$IMAGE_NAME" \
             --build-arg PYTHON_VERSION="$PYTHON_VERSION" \
             "$PROJECT_DIR"
         echo -e "${GREEN}✓ Build complete${NC}"
